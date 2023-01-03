@@ -8,16 +8,15 @@ router.get("/user", (req, res) => {
     console.log("GET/user");
 });
 
-const myAuthor = new Author({ name: "Olle" });
-
-myAuthor.save((err) => {
-    console.log(myAuthor);
-    if (err) {
-        console.error(err);
-    }
-});
-
 router.get("/", async (req, res) => {
+    const myAuthor = new Author({ name: "Olle" });
+
+    myAuthor.save((err) => {
+        console.log(myAuthor);
+        if (err) {
+            console.error(err);
+        }
+    });
     const authors = await Author.find({});
     res.json(authors);
     console.log("GET/all authors");
