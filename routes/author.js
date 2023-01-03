@@ -10,12 +10,12 @@ router.get("/user", (req, res) => {
 
 const myAuthor = new Author({ name: "Olle" });
 
-// myAuthor.save((err) => {
-//     console.log(myAuthor);
-//     if (err) {
-//         console.error(err);
-//     }
-// });
+myAuthor.save((err) => {
+    console.log(myAuthor);
+    if (err) {
+        console.error(err);
+    }
+});
 
 router.get("/", async (req, res) => {
     const authors = await Author.find({});
