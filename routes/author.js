@@ -3,18 +3,12 @@ const author = require("../models/author");
 const router = express.Router();
 const Author = require("../models/author");
 
-router.get("/user", (req, res) => {
-    res.send("Hello user!");
-    console.log("GET/user");
-});
+router.get("/:id", async (req, res) => {
+    const id = req.params.id;
+    const authors = await Author.find({ _id: id });
+    res.json(authors);
 
-const myAuthor = new Author({ name: "Olle" });
-
-myAuthor.save((err) => {
-    console.log(myAuthor);
-    if (err) {
-        console.error(err);
-    }
+    console.log("GET/author");
 });
 
 router.get("/", async (req, res) => {
@@ -23,9 +17,26 @@ router.get("/", async (req, res) => {
     console.log("GET/all authors");
 });
 
-router.post("/new", (req, res) => {
-    res.send("Create user");
-    console.log("POST/new");
+router.post("/new", express.json(), async (req, res) => {
+    const newAuthor = await Author.create({
+        name: req.body.name,
+        rating: req.body.rating,
+        categories: req.body.categories,
+    });
+
+    const authors = await Author.find({});
+    res.json(authors);
+
+    console.log("POST/new author");
+});
+
+router.delete("/delete/:id", async (req, res) => {
+    const id = req.params.id;
+    await Author.deleteOne({ _id: id });
+
+    const authors = await Author.find({});
+    res.json(authors);
+    console.log(`DELETE/author ${id}`);
 });
 
 module.exports = router;
