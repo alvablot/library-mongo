@@ -8,35 +8,49 @@ let activeUser = {};
 const router = express.Router();
 const User = require("../models/user");
 
-router.get("/me", (req, res) => {
+router.get("/me", (req, res, next) => {
     res.send("Hello user!");
     console.log("GET/user");
 });
 
-router.get("/", async (req, res) => {
-    const users = await User.find({});
-    res.json(users);
-    console.log("GET/all users");
+router.get("/", async (req, res, next) => {
+    try {
+        const users = await User.find({});
+        res.json(users);
+        console.log("GET/all users");
+    } catch (error) {
+        return next(error);
+    }
 });
 
-router.post("/new", express.json(), async (req, res) => {
-    const newUser = await User.create({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        password: md5(req.body.password),
-        email: req.body.email,
-    });
+router.post("/new", express.json(), async (req, res, next) => {
+    try {
+        const existingUser = await User.findOne({ email: req.body.email });
+        if (existingUser) {
+            return res.json({ Message: "User already exists" });
+        }
 
-    const users = await User.find({});
-    res.json(users);
+        const newUser = await User.create({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            password: md5(req.body.password),
+            email: req.body.email,
+        });
 
-    console.log("POST/new user");
+        const users = await User.find({});
+        res.json(users);
+
+        console.log("POST/new user");
+    } catch (error) {
+        return next(error);
+    }
 });
 
 router.post("/login", express.json(), async (req, res, next) => {
     try {
         const { email, password } = req.body;
-        if (!email || !password) return 400;
+        if (!email || !password)
+            return res.status(400).json({ Message: "Password or email missing" });
 
         const existingUser = await User.findOne({ email: email });
 
@@ -44,7 +58,7 @@ router.post("/login", express.json(), async (req, res, next) => {
         const hashedPassword = md5(password);
         const checkPassword = hashedPassword === existingUser.password;
 
-        if (!checkPassword) res.status(403).json({ Message: "Fuck off!" });
+        if (!checkPassword) return res.status(403).json({ Message: "Wrong password" });
 
         //////// INLOGGAD
         console.log("Right password");
@@ -65,13 +79,20 @@ router.post("/login", express.json(), async (req, res, next) => {
     }
 });
 
-router.delete("/delete/:id", async (req, res) => {
-    const id = req.params.id;
-    await User.deleteOne({ _id: id });
+router.delete("/delete/:id", async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const user = await User.findById(id);
+        if (user === null) return res.status(401).json({ Message: "User doesn't exist" });
 
-    const users = await User.find({});
-    res.json(users);
-    console.log(`DELETE/user ${id}`);
+        await User.findByIdAndRemove(id);
+        const users = await User.find({});
+        res.json(users);
+        console.log(`DELETE/User ${id}`);
+        
+    } catch (error) {
+        return next(error);
+    }
 });
 
 module.exports = router;

@@ -29,7 +29,7 @@ app.use("/items", itemRouter);
 app.use("/users", userRouter);
 
 app.use((err, req, res, next) => {
-    console.log("BAJSA BAJSA KUKEN YÄÄÄÄ!");
+    console.log("Bad request");
     res.status(404).send({ error: err.message });
 });
 
