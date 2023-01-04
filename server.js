@@ -3,19 +3,15 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
-const expressLayouts = require("express-ejs-layouts");
 
 const indexRouter = require("./routes/index");
 const authorRouter = require("./routes/author");
 const itemRouter = require("./routes/item");
 const userRouter = require("./routes/user");
 
-app.set("view engine", "ejs");
-app.set("views", __dirname + "/views");
-app.set("layout", "layouts/layout");
-app.use(expressLayouts);
-app.use(express.static("public"));
+app.use(bodyParser.json());
 
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", true);
@@ -31,5 +27,10 @@ app.use("/", indexRouter);
 app.use("/authors", authorRouter);
 app.use("/items", itemRouter);
 app.use("/users", userRouter);
+
+app.use((err, req, res, next) => {
+    console.log("BAJSA BAJSA KUKEN YÄÄÄÄ!");
+    res.status(404).send({ error: err.message });
+});
 
 app.listen(process.env.PORT || 3000);

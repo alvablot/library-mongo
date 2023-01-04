@@ -5,8 +5,8 @@ const Author = require("../models/author");
 
 router.get("/:id", async (req, res) => {
     const id = req.params.id;
-    const authors = await Author.find({ _id: id });
-    res.json(authors);
+    const author = await Author.find({ _id: id });
+    res.json(author);
 
     console.log("GET/author");
 });

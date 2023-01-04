@@ -22,12 +22,13 @@ const itemSchema = new mongoose.Schema({
         type: String,
         required: false,
     },
+    categories: [
+        {
+            type: String,
+        },
+    ],
     rating: {
         type: Number,
-        required: false,
-    },
-    home: {
-        type: Boolean,
         required: false,
     },
 });
