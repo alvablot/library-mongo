@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV !== "production") {
-    require("dotenv").config();
+  require("dotenv").config();
 }
 
 const express = require("express");
@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", true);
 mongoose.connect(process.env.DATABASE_URL, {
-    useNewUrlParser: true,
+  useNewUrlParser: true,
 });
 
 const db = mongoose.connection;
@@ -29,8 +29,8 @@ app.use("/items", itemRouter);
 app.use("/users", userRouter);
 
 app.use((err, req, res, next) => {
-    console.log("Bad request");
-    res.status(404).send({ error: err.message });
+  console.log("Bad request");
+  res.status(404).send({ error: err.message });
 });
 
 app.listen(process.env.PORT || 3000);

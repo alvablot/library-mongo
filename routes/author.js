@@ -1,42 +1,81 @@
 const express = require("express");
-const author = require("../models/author");
 const router = express.Router();
 const Author = require("../models/author");
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", async (req, res, next) => {
+  try {
     const id = req.params.id;
     const author = await Author.find({ _id: id });
     res.json(author);
 
     console.log("GET/author");
+  } catch (error) {
+    return next(error);
+  }
 });
 
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
+  try {
     const authors = await Author.find({});
     res.json(authors);
     console.log("GET/all authors");
+  } catch (error) {
+    return next(error);
+  }
 });
 
-router.post("/new", express.json(), async (req, res) => {
+router.post("/new", express.json(), async (req, res, next) => {
+  try {
+    const { name, rating, categories } = req.body;
     const newAuthor = await Author.create({
-        name: req.body.name,
-        rating: req.body.rating,
-        categories: req.body.categories,
+      name: name,
+      rating: rating,
+      categories: categories,
     });
 
     const authors = await Author.find({});
     res.json(authors);
 
     console.log("POST/new author");
+  } catch (error) {
+    return next(error);
+  }
 });
 
-router.delete("/delete/:id", async (req, res) => {
+router.put("/:id", express.json(), async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const { name, rating, categories } = req.body;
+
+    const existingAuthor = await Author.findOne({ _id: id });
+    if (existingAuthor === null) return res.status(401).json({ Message: "Author not found" });
+
+    const freshAuthor = await Author.findByIdAndUpdate(id, {
+      name: name,
+      rating: rating,
+      categories: categories,
+    });
+
+    const author = await Author.find({});
+    res.json(author);
+
+    console.log("PUT/update author");
+  } catch (error) {
+    return next(error);
+  }
+});
+
+router.delete("/delete/:id", async (req, res, next) => {
+  try {
     const id = req.params.id;
     await Author.deleteOne({ _id: id });
 
     const authors = await Author.find({});
     res.json(authors);
     console.log(`DELETE/author ${id}`);
+  } catch (error) {
+    return next(error);
+  }
 });
 
 module.exports = router;
