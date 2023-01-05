@@ -9,6 +9,7 @@ router.get("/:id", async (req, res, next) => {
     res.json(author);
 
     console.log("GET/author");
+    next();
   } catch (error) {
     return next(error);
   }
@@ -19,6 +20,7 @@ router.get("/", async (req, res, next) => {
     const authors = await Author.find({});
     res.json(authors);
     console.log("GET/all authors");
+    next();
   } catch (error) {
     return next(error);
   }
@@ -37,6 +39,7 @@ router.post("/new", express.json(), async (req, res, next) => {
     res.json(authors);
 
     console.log("POST/new author");
+    next();
   } catch (error) {
     return next(error);
   }
@@ -60,6 +63,7 @@ router.put("/:id", express.json(), async (req, res, next) => {
     res.json(author);
 
     console.log("PUT/update author");
+    next();
   } catch (error) {
     return next(error);
   }
@@ -73,6 +77,7 @@ router.delete("/delete/:id", async (req, res, next) => {
     const authors = await Author.find({});
     res.json(authors);
     console.log(`DELETE/author ${id}`);
+    next();
   } catch (error) {
     return next(error);
   }

@@ -1,0 +1,8 @@
+Metod: GET | statuskod: 200 | endpoint: /users 1672938018014 vscode-restclient
+Metod: GET | statuscode: 200 | endpoint: /users 2023-0-5 18:7:3 vscode-restclient
+Metod: GET | statuscode: 200 | endpoint: /users 2023-0-5 18:8:51 vscode-restclient
+Metod: GET | statuscode: 200 | endpoint: /users 2023-00-5 18:9:29 vscode-restclient
+Metod: GET | statuscode: 200 | endpoint: /users 2023-001-5 18:10:3 vscode-restclient
+Metod: GET | statuscode: 200 | endpoint: /users 2023-01-5 18:10:33 vscode-restclient
+Metod: GET | statuscode: 200 | endpoint: /users 2023-01-06 18:11:32 vscode-restclient
+Metod: GET | statuscode: 200 | endpoint: /users 2023-01-06 18:12:54 vscode-restclient

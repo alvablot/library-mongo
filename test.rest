@@ -50,14 +50,12 @@ content-type: application/json
     "password": "666",
     "email": "jag@sf.com"
 }
-### Users
-GET http://localhost:3000/users/me
 
-###
+### Users
 GET http://localhost:3000/users
 
 ###
-DELETE http://localhost:3000/users/delete/63b5dd732931f5f42266e368
+DELETE http://localhost:3000/users/delete/63b5dd732931f5f42266e36
 
 ###
 POST http://localhost:3000/users/new
@@ -71,14 +69,14 @@ content-type: application/json
 }
 
 ###
-PUT http://localhost:3000/users/63b5dd732931f5f42266e368
+PUT http://localhost:3000/users/63b5c608a6c710a39767985b
 content-type: application/json
 
 {
     "firstName": "Petter",
     "lastName": "Callesson",
     "password": "666",
-    "email": "jag@sf.com"
+    "email": "mail@mail.com"
 }
 
 ###
@@ -87,13 +85,13 @@ content-type: application/json
 
 {
     "password": "666",
-    "email": "jag@sf.com"
+    "email": "mail@mail.com"
 }
 
 ### Auth
 GET http://localhost:3000/users/me
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjVkZDczMjkzMWY1ZjQyMjY2ZTM2OCIsImVtYWlsIjoiamFnQHNmLmNvbSIsImlhdCI6MTY3MjkxOTI4NH0.X5Tzi2bnR36AU46UsCs6p_dwtnSwNKZeGbmIGK76__Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjVjNjA4YTZjNzEwYTM5NzY3OTg1YiIsImVtYWlsIjoibWFpbEBtYWlsLmNvbSIsImlhdCI6MTY3MjkzNzIwOH0._XYgI_qQyZ-41X6-WLfjRTMOiSLGnM61N2Y0EKXSx4Y
 
 ### Items
 GET http://localhost:3000/items/63b5a43d7909af0168e686cb
@@ -122,6 +120,14 @@ content-type: application/json
 }
 
 ###
+POST http://localhost:3000/items/upload
+content-type: application/json
+
+{
+
+}
+
+###
 PUT http://localhost:3000/items/63b5a43d7909af0168e686cb
 content-type: application/json
 
@@ -136,6 +142,15 @@ content-type: application/json
     "rating": 3,
     "home": true,
     "lender": "none"
+}
+
+###
+PATCH http://localhost:3000/items/63b6c4771d945f0c4527dceb
+content-type: application/json
+
+{
+    "home": false,
+    "lender": "Rustan Jävel"
 }
 ### Authors
 GET http://localhost:3000/authors/63b46af43c3423f139107d4f
@@ -166,5 +181,8 @@ content-type: application/json
     "categories": ["Horror", "Drama"]
 }
 
+
+###
+GET http://localhost:5000/users
 
 

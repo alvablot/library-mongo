@@ -13,6 +13,7 @@ router.get("/me", auth, (req, res, next) => {
   try {
     res.json({ loggedInUser: req.user });
     console.log("GET/me");
+    next();
   } catch (error) {
     return next(error);
   }
@@ -23,6 +24,7 @@ router.get("/", async (req, res, next) => {
     const users = await User.find({});
     res.json(users);
     console.log("GET/all users");
+    next();
   } catch (error) {
     return next(error);
   }
@@ -49,6 +51,7 @@ router.post("/new", express.json(), async (req, res, next) => {
     res.json(users);
 
     console.log("POST/new user");
+    next();
   } catch (error) {
     return next(error);
   }
@@ -81,6 +84,7 @@ router.post("/login", express.json(), async (req, res, next) => {
       password: hashedPassword,
     };
     res.json({ token: token });
+    next();
   } catch (error) {
     return next(error);
   }
@@ -102,6 +106,7 @@ router.put("/:id", express.json(), async (req, res, next) => {
     res.json(user);
 
     console.log("PUT/update User");
+    next();
   } catch (error) {
     return next(error);
   }
@@ -117,6 +122,7 @@ router.delete("/delete/:id", async (req, res, next) => {
     const users = await User.find({});
     res.json(users);
     console.log(`DELETE/User ${id}`);
+    next();
   } catch (error) {
     return next(error);
   }

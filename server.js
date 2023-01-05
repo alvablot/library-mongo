@@ -5,6 +5,11 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+const path = require("path");
+
+const port = process.env.PORT || 3000;
+
+const log = require("./middlewares/log");
 
 const indexRouter = require("./routes/index");
 const authorRouter = require("./routes/author");
@@ -33,4 +38,8 @@ app.use((err, req, res, next) => {
   res.status(404).send({ error: err.message });
 });
 
-app.listen(process.env.PORT || 3000);
+app.use(log);
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
