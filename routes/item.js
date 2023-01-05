@@ -26,15 +26,18 @@ router.get("/", async (req, res, next) => {
 
 router.post("/new", express.json(), async (req, res, next) => {
   try {
+    const { title, author, number, image, description, categories, rating, home, lender } =
+      req.body;
     const newItem = await Item.create({
-      title: req.body.title,
-      author: req.body.author,
-      number: req.body.number,
-      image: req.body.image,
-      description: req.body.description,
-      categories: req.body.categories,
-      rating: req.body.rating,
-      home: req.body.home,
+      title: title,
+      author: author,
+      number: number,
+      image: image,
+      description: description,
+      categories: categories,
+      rating: rating,
+      home: home,
+      lender: lender,
     });
 
     const item = await Item.find({});
@@ -49,15 +52,18 @@ router.post("/new", express.json(), async (req, res, next) => {
 router.put("/:id", express.json(), async (req, res, next) => {
   try {
     const id = req.params.id;
+    const { title, author, number, image, description, categories, rating, home, lender } =
+      req.body;
     const freshItem = await Item.findByIdAndUpdate(id, {
-      title: req.body.title,
-      author: req.body.author,
-      number: req.body.number,
-      image: req.body.image,
-      description: req.body.description,
-      categories: req.body.categories,
-      rating: req.body.rating,
-      home: req.body.home,
+      title: title,
+      author: author,
+      number: number,
+      image: image,
+      description: description,
+      categories: categories,
+      rating: rating,
+      home: home,
+      lender: lender,
     });
 
     const item = await Item.find({});

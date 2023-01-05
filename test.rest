@@ -1,0 +1,170 @@
+GET https://examensarb.herokuapp.com/
+
+###
+GET https://examensarb.herokuapp.com/authors
+
+###
+DELETE https://examensarb.herokuapp.com/authors/delete/63b46b4418c2479777e744b5
+
+###
+POST https://examensarb.herokuapp.com/authors/new
+content-type: application/json
+
+{
+    "name": "Bret Easton Ellis",
+    "rating": 5,
+    "categories": ["Horror", "Contemperary"]
+}
+###
+POST https://examensarb.herokuapp.com/items/new
+content-type: application/json
+
+{
+    "title": "American Psycho",
+    "author": "63b55ca0d73776bc29ce64d1",
+    "number": "666",
+    "image": "http://images.com/jaws.jpg",
+    "description": "About a killer in New York",
+    "categories": ["Horror", "Contemperary"],
+    "rating": 4,
+    "home": true,
+    "lender": "none"
+}
+
+###
+POST https://examensarb.herokuapp.com/users/new
+content-type: application/json
+
+{
+    "firstName": "Jag",
+    "lastName": "Callesson",
+    "password": "666",
+    "email": "jag@sf.com"
+}
+
+###
+POST https://examensarb.herokuapp.com/users/login
+content-type: application/json
+
+{
+    "password": "666",
+    "email": "jag@sf.com"
+}
+### Users
+GET http://localhost:3000/users/me
+
+###
+GET http://localhost:3000/users
+
+###
+DELETE http://localhost:3000/users/delete/63b5dd732931f5f42266e368
+
+###
+POST http://localhost:3000/users/new
+content-type: application/json
+
+{
+    "firstName": "Jag",
+    "lastName": "Callesson",
+    "password": "666",
+    "email": "jag@sf.com"
+}
+
+###
+PUT http://localhost:3000/users/63b5dd732931f5f42266e368
+content-type: application/json
+
+{
+    "firstName": "Petter",
+    "lastName": "Callesson",
+    "password": "666",
+    "email": "jag@sf.com"
+}
+
+###
+POST http://localhost:3000/users/login
+content-type: application/json
+
+{
+    "password": "666",
+    "email": "jag@sf.com"
+}
+
+### Auth
+GET http://localhost:3000/users/me
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjVkZDczMjkzMWY1ZjQyMjY2ZTM2OCIsImVtYWlsIjoiamFnQHNmLmNvbSIsImlhdCI6MTY3MjkxOTI4NH0.X5Tzi2bnR36AU46UsCs6p_dwtnSwNKZeGbmIGK76__Y
+
+### Items
+GET http://localhost:3000/items/63b5a43d7909af0168e686cb
+
+###
+GET http://localhost:3000/items/
+
+###
+DELETE http://localhost:3000/items/delete/63b5a43d7909af0168e686cb
+
+###
+POST http://localhost:3000/items/new
+content-type: application/json
+
+{
+    "title": "Jaws",
+    "author": "Peter Benchley",
+    "number": "666",
+    "image": "http://images.com/jaws.jpg",
+    "description": "About a killer great white shark",
+    "rating": 2,
+    "categories": ["Horror", "Thriller"],
+    "rating": 3,
+    "home": true,
+    "lender": "none"
+}
+
+###
+PUT http://localhost:3000/items/63b5a43d7909af0168e686cb
+content-type: application/json
+
+{
+    "title": "Jaws",
+    "author": "Peter Benchley",
+    "number": "666",
+    "image": "http://images.com/jaws.jpg",
+    "description": "About a killer great white shark",
+    "rating": 2,
+    "categories": ["Horror", "Thriller"],
+    "rating": 3,
+    "home": true,
+    "lender": "none"
+}
+### Authors
+GET http://localhost:3000/authors/63b46af43c3423f139107d4f
+
+###
+GET http://localhost:3000/authors
+
+###
+DELETE http://localhost:3000/authors/delete/63b5a42c7909af0168e686c6
+
+###
+POST http://localhost:3000/authors/new
+content-type: application/json
+
+{
+    "name": "Bret Eason Ellis",
+    "rating": 5,
+    "categories": ["Horror", "Contemperary"]
+}
+
+###
+PUT http://localhost:3000/authors/63b46af43c3423f139107d4
+content-type: application/json
+
+{
+    "name": "Peter Benchley",
+    "rating": 3,
+    "categories": ["Horror", "Drama"]
+}
+
+
+
