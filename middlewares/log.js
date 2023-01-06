@@ -1,12 +1,11 @@
 const express = require("express");
 const fs = require("fs");
-const app = express();
 
 const log = (req, res, next) => {
   const { method, url, route, hostname, rawHeaders } = req;
 
   res.on("finish", async () => {
-    
+
     let now = new Date();
     const year = now.getFullYear();
     let month = now.getMonth();
@@ -28,15 +27,12 @@ const log = (req, res, next) => {
       res.statusCode +
       " | endpoint: " +
       url +
-      //" " +
-      //mess +
       " " +
       timeStamp +
       " " +
       rawHeaders[1] +
       "\n";
     console.log(logRow);
-    // app.use(express.json());
 
     fs.writeFile("./log.txt", logRow, { flag: "a+" }, (err) => {
       if (err) throw err;

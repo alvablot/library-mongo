@@ -4,6 +4,7 @@ if (process.env.NODE_ENV !== "production") {
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const app = express();
 const path = require("path");
 
@@ -15,6 +16,8 @@ const indexRouter = require("./routes/index");
 const authorRouter = require("./routes/author");
 const itemRouter = require("./routes/item");
 const userRouter = require("./routes/user");
+
+app.use(cors());
 
 app.use(bodyParser.json());
 
