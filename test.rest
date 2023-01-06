@@ -62,10 +62,10 @@ POST http://localhost:3000/users/new
 content-type: application/json
 
 {
-    "firstName": "Jag",
-    "lastName": "Callesson",
+    "firstName": "Lena",
+    "lastName": "Nilsson",
     "password": "666",
-    "email": "jag@sf.com"
+    "email": "lena@sf.com"
 }
 
 ###
@@ -108,6 +108,7 @@ content-type: application/json
 
 {
     "title": "Jaws",
+    "mediaType": "Book",
     "author": "Peter Benchley",
     "number": "666",
     "image": "http://images.com/jaws.jpg",

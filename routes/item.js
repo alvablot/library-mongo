@@ -65,10 +65,11 @@ router.post("/upload", upload.single(), async (req, res, next) => {
 router.put("/:id", express.json(), async (req, res, next) => {
   try {
     const id = req.params.id;
-    const { title, author, number, image, description, categories, rating, home, lender } =
+    const { title, mediaType, author, number, image, description, categories, rating, home, lender } =
       req.body;
     const freshItem = await Item.findByIdAndUpdate(id, {
       title: title,
+      mediaType: mediaType,
       author: author,
       number: number,
       image: image,

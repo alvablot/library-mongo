@@ -41,7 +41,7 @@ app.use((err, req, res, next) => {
   res.status(404).send({ error: err.message });
 });
 
-app.use(log);
+// app.use(log);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
