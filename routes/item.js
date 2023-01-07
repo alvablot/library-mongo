@@ -28,8 +28,17 @@ router.get("/", async (req, res, next) => {
 
 router.post("/new", express.json(), async (req, res, next) => {
   try {
-    const { title, author, number, image, description, categories, rating, home, lender } =
-      req.body;
+    const {
+      title,
+      author,
+      number,
+      image,
+      description,
+      categories,
+      rating,
+      home,
+      lender,
+    } = req.body;
     const newItem = await Item.create({
       title: title,
       author: author,
@@ -52,10 +61,10 @@ router.post("/new", express.json(), async (req, res, next) => {
   }
 });
 
-router.post("/upload", upload.single(), async (req, res, next) => {
+router.post("/upload", upload.single("img"), async (req, res, next) => {
   try {
-    res.send("Uploader");
     console.log("POST/upload");
+    res.json({ filename: req.file.filename, path: req.file.path });
     next();
   } catch (error) {
     return next(error);
@@ -65,8 +74,18 @@ router.post("/upload", upload.single(), async (req, res, next) => {
 router.put("/:id", express.json(), async (req, res, next) => {
   try {
     const id = req.params.id;
-    const { title, mediaType, author, number, image, description, categories, rating, home, lender } =
-      req.body;
+    const {
+      title,
+      mediaType,
+      author,
+      number,
+      image,
+      description,
+      categories,
+      rating,
+      home,
+      lender,
+    } = req.body;
     const freshItem = await Item.findByIdAndUpdate(id, {
       title: title,
       mediaType: mediaType,
@@ -93,8 +112,7 @@ router.put("/:id", express.json(), async (req, res, next) => {
 router.patch("/:id", express.json(), async (req, res, next) => {
   try {
     const id = req.params.id;
-    const { home, lender } =
-      req.body;
+    const { home, lender } = req.body;
     const freshItem = await Item.findByIdAndUpdate(id, {
       home: home,
       lender: lender,
