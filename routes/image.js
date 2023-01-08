@@ -5,15 +5,14 @@ const upload = require("../middlewares/upload");
 const Image = require("../models/image");
 
 router.get("/", async (req, res, next) => {
-  Image.find({}, (err, items) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send("An error occurred", err);
-    } else {
-      // res.render("images", { items: items });
+  try {
+    Image.find({}, (err, items) => {
       res.json({ images: items });
-    }
-  });
+    });
+    console.log("Get images")
+  } catch (error) {
+    return next(error);
+  }
 });
 
 router.post("/upload", upload.single("img"), (req, res, next) => {
