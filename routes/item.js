@@ -1,6 +1,6 @@
 const express = require("express");
-const upload = require("../middlewares/upload");
 const router = express.Router();
+
 const Item = require("../models/item");
 
 router.get("/:id", async (req, res, next) => {
@@ -55,16 +55,6 @@ router.post("/new", express.json(), async (req, res, next) => {
     res.json(item);
 
     console.log("POST/new item");
-    next();
-  } catch (error) {
-    return next(error);
-  }
-});
-
-router.post("/upload", upload.single("img"), async (req, res, next) => {
-  try {
-    console.log("POST/upload");
-    res.json({ filename: req.file.filename, path: req.file.path });
     next();
   } catch (error) {
     return next(error);

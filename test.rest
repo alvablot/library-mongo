@@ -85,7 +85,7 @@ content-type: application/json
 
 {
     "password": "666",
-    "email": "mail@mail.com"
+    "email": "lena@sf.com"
 }
 
 ### Auth
@@ -95,6 +95,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjVjNjA4Y
 
 ### Items
 GET http://localhost:3000/items/63b5a43d7909af0168e686cb
+
+###
+GET http://localhost:3000/items/
 
 ###
 GET http://localhost:3000/items/
@@ -129,11 +132,12 @@ content-type: application/json
 }
 
 ###
-PUT http://localhost:3000/items/63b5a43d7909af0168e686cb
+PUT http://localhost:3000/items/63b6c4771d945f0c4527dceb
 content-type: application/json
 
 {
     "title": "Jaws",
+    "mediaType": "Book",
     "author": "Peter Benchley",
     "number": "666",
     "image": "http://images.com/jaws.jpg",

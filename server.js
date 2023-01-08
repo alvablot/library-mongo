@@ -7,6 +7,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.set("view engine", "ejs");
 
 const port = process.env.PORT || 3000;
@@ -17,10 +19,9 @@ const indexRouter = require("./routes/index");
 const authorRouter = require("./routes/author");
 const itemRouter = require("./routes/item");
 const userRouter = require("./routes/user");
+const imageRouter = require("./routes/image");
 
 app.use(cors());
-
-app.use(bodyParser.json());
 
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", true);
@@ -36,6 +37,7 @@ app.use("/", indexRouter);
 app.use("/authors", authorRouter);
 app.use("/items", itemRouter);
 app.use("/users", userRouter);
+app.use("/images", imageRouter);
 
 app.use((err, req, res, next) => {
   console.log("Bad request");
