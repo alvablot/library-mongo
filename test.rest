@@ -97,10 +97,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjVjNjA4Y
 GET http://localhost:3000/items/63b5a43d7909af0168e686cb
 
 ###
-GET http://localhost:3000/items/
+GET http://localhost:3000/images/
 
 ###
-GET http://localhost:3000/items/
+GET http://localhost:3000/items/pics
 
 ###
 DELETE http://localhost:3000/items/delete/63b5a43d7909af0168e686cb

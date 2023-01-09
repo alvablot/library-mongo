@@ -5,10 +5,6 @@ const itemSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  mediaType: {
-    type: String,
-    required: true,
-  },
   author: {
     type: String,
     id: String,
