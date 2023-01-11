@@ -35,7 +35,6 @@ router.post("/new", express.json(), async (req, res, next) => {
       number,
       image,
       description,
-      categories,
       category,
       sub,
       rating,
@@ -43,11 +42,11 @@ router.post("/new", express.json(), async (req, res, next) => {
       lender,
     } = req.body;
 
-    const existingItem = await Item.findOne({ title: title });
+    // const existingItem = await Item.findOne({ title: title });
 
-    if (existingItem) {
-      return res.json({ Message: "User already exists" });
-    }
+    // if (existingItem) {
+    //   return res.json({ Message: "User already exists" });
+    // }
 
     const newItem = await Item.create({
       title: title,
@@ -55,12 +54,10 @@ router.post("/new", express.json(), async (req, res, next) => {
       number: number,
       image: image,
       description: description,
-      categories: categories,
       category: category,
       sub: sub,
       rating: rating,
       home: home,
-      lender: lender,
     });
 
     // const item = await Item.find({});
