@@ -8,11 +8,11 @@ const itemSchema = new mongoose.Schema({
   author: {
     type: String,
     id: String,
-    required: true,
+    required: false,
   },
   number: {
     type: String,
-    required: true,
+    required: false,
   },
   image: {
     type: String,

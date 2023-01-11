@@ -7,6 +7,7 @@ router.get("/:id", async (req, res, next) => {
   try {
     const id = req.params.id;
     const item = await Item.findById(id);
+
     res.json(item);
     console.log(`GET/item ${id}`);
     next();
@@ -131,14 +132,16 @@ router.patch("/:id", express.json(), async (req, res, next) => {
   }
 });
 
-router.delete("/delete/:id", async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   try {
     const id = req.params.id;
+
     const item = await Item.findById(id);
     await Item.findByIdAndRemove(id);
     const items = await Item.find({});
-    res.json(items);
+    res.json(item);
     console.log(`DELETE/item ${id}`);
+
     next();
   } catch (error) {
     return next(error);
