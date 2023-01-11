@@ -35,10 +35,19 @@ router.post("/new", express.json(), async (req, res, next) => {
       image,
       description,
       categories,
+      category,
+      sub,
       rating,
       home,
       lender,
     } = req.body;
+
+    const existingItem = await Item.findOne({ title: title });
+
+    if (existingItem) {
+      return res.json({ Message: "User already exists" });
+    }
+
     const newItem = await Item.create({
       title: title,
       author: author,
@@ -46,12 +55,15 @@ router.post("/new", express.json(), async (req, res, next) => {
       image: image,
       description: description,
       categories: categories,
+      category: category,
+      sub: sub,
       rating: rating,
       home: home,
       lender: lender,
     });
 
-    const item = await Item.find({});
+    // const item = await Item.find({});
+    const item = await Item.findOne({ title: title });
     res.json(item);
 
     console.log("POST/new item");
@@ -66,24 +78,25 @@ router.put("/:id", express.json(), async (req, res, next) => {
     const id = req.params.id;
     const {
       title,
-      mediaType,
       author,
       number,
       image,
       description,
       categories,
+      category,
+      sub,
       rating,
       home,
       lender,
     } = req.body;
     const freshItem = await Item.findByIdAndUpdate(id, {
       title: title,
-      mediaType: mediaType,
       author: author,
       number: number,
       image: image,
       description: description,
-      categories: categories,
+      category: category,
+      sub: sub,
       rating: rating,
       home: home,
       lender: lender,

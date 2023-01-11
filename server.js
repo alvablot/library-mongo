@@ -20,6 +20,7 @@ const authorRouter = require("./routes/author");
 const itemRouter = require("./routes/item");
 const userRouter = require("./routes/user");
 const imageRouter = require("./routes/image");
+const categoryRouter = require("./routes/category");
 
 app.use(cors());
 
@@ -38,6 +39,7 @@ app.use("/authors", authorRouter);
 app.use("/items", itemRouter);
 app.use("/users", userRouter);
 app.use("/images", imageRouter);
+app.use("/categories", categoryRouter);
 
 app.use((err, req, res, next) => {
   console.log("Bad request");

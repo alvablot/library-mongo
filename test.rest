@@ -51,7 +51,7 @@ content-type: application/json
     "email": "jag@sf.com"
 }
 
-### Users
+### Users ########################################################
 GET http://localhost:3000/users
 
 ###
@@ -88,22 +88,19 @@ content-type: application/json
     "email": "lena@sf.com"
 }
 
-### Auth
+### Auth ########################################################
 GET http://localhost:3000/users/me
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjVjNjA4YTZjNzEwYTM5NzY3OTg1YiIsImVtYWlsIjoibWFpbEBtYWlsLmNvbSIsImlhdCI6MTY3MjkzNzIwOH0._XYgI_qQyZ-41X6-WLfjRTMOiSLGnM61N2Y0EKXSx4Y
 
-### Items
+### ITEMS ########################################################
 GET http://localhost:3000/items/63b5a43d7909af0168e686cb
 
-###
-GET http://localhost:3000/images/
+### 
+GET http://localhost:3000/items
 
 ###
-GET http://localhost:3000/items/pics
-
-###
-DELETE http://localhost:3000/items/delete/63b5a43d7909af0168e686cb
+DELETE http://localhost:3000/items/delete/63bd7ce6fc7d2a57cd3a5e10
 
 ###
 POST http://localhost:3000/items/new
@@ -111,14 +108,14 @@ content-type: application/json
 
 {
     "title": "Jaws",
-    "mediaType": "Book",
     "author": "Peter Benchley",
     "number": "666",
-    "image": "http://images.com/jaws.jpg",
+    "image": "https://res.cloudinary.com/dajj8zghh/image/upload/v1673279617/img/cg862f6qqayjpawv1gbz.jpg",
     "description": "About a killer great white shark",
     "rating": 2,
     "categories": ["Horror", "Thriller"],
-    "rating": 3,
+    "category": "Book",
+    "sub": "Horror",
     "home": true,
     "lender": "none"
 }
@@ -132,19 +129,18 @@ content-type: application/json
 }
 
 ###
-PUT http://localhost:3000/items/63b6c4771d945f0c4527dceb
+PUT http://localhost:3000/items/63bd7d03fc7d2a57cd3a5e18
 content-type: application/json
 
 {
-    "title": "Jaws",
-    "mediaType": "Book",
-    "author": "Peter Benchley",
+    "title": "Minuscule vol. 1",
+    "author": "?",
     "number": "666",
-    "image": "http://images.com/jaws.jpg",
-    "description": "About a killer great white shark",
-    "rating": 2,
-    "categories": ["Horror", "Thriller"],
-    "rating": 3,
+    "image": "https://res.cloudinary.com/dajj8zghh/image/upload/v1673362635/img/rtjxqmxavlkyczvbdlfa.jpg",
+    "description": "About a Bug in France",
+    "category": "DVD",
+    "sub": "Animated",
+    "rating": 4,
     "home": true,
     "lender": "none"
 }
@@ -157,7 +153,7 @@ content-type: application/json
     "home": false,
     "lender": "Rustan Jävel"
 }
-### Authors
+### Authors ########################################################
 GET http://localhost:3000/authors/63b46af43c3423f139107d4f
 
 ###
@@ -187,7 +183,45 @@ content-type: application/json
 }
 
 
+### CATEGORIES #####################################################################
+GET http://localhost:3000/categories/
 ###
-GET http://localhost:5000/users
+POST http://localhost:3000/categories/new
+content-type: application/json
 
+{
+    "name": "BlueRay",
+    "subs": [      
+        "Horror",
+        "Contemperary",
+        "Thriller",
+        "Fantasy",
+        "Mystery",
+        "War",
+        "Drama",
+        "Sience Fiction",
+        "Ducumentary",
+        "Music"
+    ]
+}
 
+###
+PUT http://localhost:3000/categories/63bd5639699a4f7943793120
+content-type: application/json
+
+{
+    "name": "MC",
+        "subs": [      
+        "Horror",
+        "Contemperary",
+        "Thriller",
+        "Fantasy",
+        "Mystery",
+        "War",
+        "Drama",
+        "Sience Fiction",
+        "Ducumentary",
+        "Music",
+        "Biography"
+    ]
+}

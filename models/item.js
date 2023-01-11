@@ -25,8 +25,17 @@ const itemSchema = new mongoose.Schema({
   categories: [
     {
       type: String,
+      required: false,
     },
   ],
+  category: {
+    type: String,
+    required: true,
+  },
+  sub: {
+    type: String,
+    required: true,
+  },
   rating: {
     type: Number,
     required: false,
