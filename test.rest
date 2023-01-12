@@ -107,24 +107,15 @@ POST http://localhost:3000/items/new
 content-type: application/json
 
 {
-    "title": "Jaws",
-    "author": "Peter Benchley",
+    "title": "Test",
+    "author": "Test",
     "number": "666",
-    "image": "https://res.cloudinary.com/dajj8zghh/image/upload/v1673279617/img/cg862f6qqayjpawv1gbz.jpg",
-    "description": "About a killer great white shark",
+    "image": "https://res.cloudinary.com/dajj8zghh/image/upload/v1673460759/img/mxhj4akj3bq00nxcvrsq.png",
+    "description": "TestTestTest",
     "rating": 2,
-    "categories": ["Horror", "Thriller"],
     "category": "Book",
     "sub": "Horror",
-    "home": true,
-}
-
-###
-POST http://localhost:3000/items/upload
-content-type: application/json
-
-{
-
+    "home": true
 }
 
 ###
@@ -224,3 +215,6 @@ content-type: application/json
         "Biography"
     ]
 }
+
+###
+GET http://localhost:3000/images

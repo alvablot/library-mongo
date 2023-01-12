@@ -100,7 +100,7 @@ router.put("/:id", express.json(), async (req, res, next) => {
       lender: lender,
     });
 
-    const item = await Item.find({});
+    const item = await Item.findById(id);
     res.json(item);
 
     console.log("PUT/update item");
