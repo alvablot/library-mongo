@@ -17,7 +17,7 @@ router.get("/:id", async (req, res, next) => {
 
 router.get("/", async (req, res, next) => {
   try {
-    const categories = await Category.find({});
+    const categories = await Category.find({}).sort({ name: 'asc', test: -1 });;
     res.json(categories);
     console.log("GET/all authors");
     next();

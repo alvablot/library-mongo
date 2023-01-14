@@ -100,6 +100,10 @@ GET http://localhost:3000/items/63b5de4b91fa8908df0f75c7
 GET http://localhost:3000/items
 
 ###
+
+GET http://localhost:3000/items/Book
+
+###
 DELETE http://localhost:3000/items/63be864fc439f4cdfa240137
 
 ###

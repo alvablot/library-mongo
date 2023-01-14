@@ -6,9 +6,21 @@ const Item = require("../models/item");
 router.get("/:id", async (req, res, next) => {
   try {
     const id = req.params.id;
-    const item = await Item.findById(id);
+    if (id.length > 23) {
+      const item = await Item.findById(id);
+      console.log(id);
+      res.json(item);
+    } else {
+      if (id === "All") {
+        const item = await Item.find({}).sort({ category: "asc" });
+        res.json(item);
+      } else {
+        const item = await Item.find({ category: id }).exec();
+        console.log(id);
+        res.json(item);
+      }
+    }
 
-    res.json(item);
     console.log(`GET/item ${id}`);
     next();
   } catch (error) {
@@ -18,7 +30,7 @@ router.get("/:id", async (req, res, next) => {
 
 router.get("/", async (req, res, next) => {
   try {
-    const items = await Item.find({});
+    const items = await Item.find({}).sort({ title: "asc" });
     res.json(items);
     console.log("GET/all items");
     next();
@@ -60,9 +72,9 @@ router.post("/new", express.json(), async (req, res, next) => {
       home: home,
     });
 
-    // const item = await Item.find({});
-    const item = await Item.findOne({ title: title });
-    res.json(item);
+    const items = await Item.find({});
+    //const item = await Item.findOne({ title: title });
+    res.json(items);
 
     console.log("POST/new item");
     next();
