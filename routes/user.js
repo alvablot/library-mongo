@@ -9,15 +9,15 @@ let activeUser = {};
 const router = express.Router();
 const User = require("../models/user");
 
-// router.get("/me", auth, (req, res, next) => {
-//   try {
-//     res.json({ loggedInUser: req.user });
-//     console.log("GET/me");
-//     next();
-//   } catch (error) {
-//     return next(error);
-//   }
-// });
+router.get("/me", auth, (req, res, next) => {
+  try {
+    res.json({ loggedInUser: req.user });
+    console.log("GET/me");
+    next();
+  } catch (error) {
+    return next(error);
+  }
+});
 
 router.get("/:id", auth, async (req, res, next) => {
   try {
