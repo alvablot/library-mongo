@@ -12,10 +12,12 @@ router.get("/:id", async (req, res, next) => {
       res.json(item);
     } else {
       if (id === "All") {
-        const item = await Item.find({}).sort({ category: "asc" });
+        const item = await Item.find({}).sort({ dateCreated:-1 });
         res.json(item);
       } else {
-        const item = await Item.find({ category: id }).exec();
+        const item = await Item.find({ category: id })
+          .sort({ dateCreated: "asc" })
+          .exec();
         console.log(id);
         res.json(item);
       }
@@ -30,7 +32,7 @@ router.get("/:id", async (req, res, next) => {
 
 router.get("/", async (req, res, next) => {
   try {
-    const items = await Item.find({}).sort({ title: "asc" });
+    const items = await Item.find({}).sort({ dateCreated: "asc" });
     res.json(items);
     console.log("GET/all items");
     next();
@@ -40,6 +42,7 @@ router.get("/", async (req, res, next) => {
 });
 
 router.post("/new", express.json(), async (req, res, next) => {
+  const now = new Date();
   try {
     const {
       title,
@@ -52,13 +55,8 @@ router.post("/new", express.json(), async (req, res, next) => {
       rating,
       home,
       lender,
+      dateCreated,
     } = req.body;
-
-    // const existingItem = await Item.findOne({ title: title });
-
-    // if (existingItem) {
-    //   return res.json({ Message: "User already exists" });
-    // }
 
     const newItem = await Item.create({
       title: title,
@@ -70,6 +68,7 @@ router.post("/new", express.json(), async (req, res, next) => {
       sub: sub,
       rating: rating,
       home: home,
+      dateCreated: now,
     });
 
     const items = await Item.find({});
@@ -84,6 +83,7 @@ router.post("/new", express.json(), async (req, res, next) => {
 });
 
 router.put("/:id", express.json(), async (req, res, next) => {
+  const now = new Date();
   try {
     const id = req.params.id;
     const {
@@ -98,6 +98,7 @@ router.put("/:id", express.json(), async (req, res, next) => {
       rating,
       home,
       lender,
+      dateCreated,
     } = req.body;
     const freshItem = await Item.findByIdAndUpdate(id, {
       title: title,
@@ -110,6 +111,7 @@ router.put("/:id", express.json(), async (req, res, next) => {
       rating: rating,
       home: home,
       lender: lender,
+      dateCreated: now,
     });
 
     const item = await Item.findById(id);

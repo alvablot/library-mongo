@@ -9,9 +9,21 @@ let activeUser = {};
 const router = express.Router();
 const User = require("../models/user");
 
-router.get("/me", auth, (req, res, next) => {
+// router.get("/me", auth, (req, res, next) => {
+//   try {
+//     res.json({ loggedInUser: req.user });
+//     console.log("GET/me");
+//     next();
+//   } catch (error) {
+//     return next(error);
+//   }
+// });
+
+router.get("/:id", auth, async (req, res, next) => {
   try {
-    res.json({ loggedInUser: req.user });
+    const id = req.params.id;
+    const user = await User.findById(id);
+    res.json(user);
     console.log("GET/me");
     next();
   } catch (error) {

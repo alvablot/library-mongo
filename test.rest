@@ -89,9 +89,9 @@ content-type: application/json
 }
 
 ### Auth ########################################################
-GET http://localhost:3000/users/me
+GET http://localhost:3000/users/63c54c8b03ba9b32e3ea486c
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjVjNjA4YTZjNzEwYTM5NzY3OTg1YiIsImVtYWlsIjoibWFpbEBtYWlsLmNvbSIsImlhdCI6MTY3MjkzNzIwOH0._XYgI_qQyZ-41X6-WLfjRTMOiSLGnM61N2Y0EKXSx4Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzU0YzhiMDNiYTliMzJlM2VhNDg2YyIsImVtYWlsIjoicGV0dGVyIiwiaWF0IjoxNjczODg5NzUwfQ.ytQhwv--wqyiRFLyIgCcQ3O53dtFQijP9Ywvb0TJUBQ
 
 ### ITEMS ########################################################
 GET http://localhost:3000/items/63b5de4b91fa8908df0f75c7

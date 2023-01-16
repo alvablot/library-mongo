@@ -41,6 +41,20 @@ const itemSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  dateCreated: {
+    type: Date,
+    required: true,
+  }
+  ,
+  dateLoan: {
+    type: Date,
+    required: false,
+  }
+  ,
+  dateReturn: {
+    type: Date,
+    required: false,
+  }
 });
 
 module.exports = mongoose.model("Item", itemSchema);
