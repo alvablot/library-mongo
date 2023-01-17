@@ -12,7 +12,7 @@ router.get("/:id", async (req, res, next) => {
       res.json(item);
     } else {
       if (id === "All") {
-        const item = await Item.find({}).sort({ dateCreated:-1 });
+        const item = await Item.find({}).sort({ dateCreated: -1 });
         res.json(item);
       } else {
         const item = await Item.find({ category: id })
@@ -30,9 +30,25 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+router.get("/search/:query", async (req, res, next) => {
+  try {
+    const query = req.params.query;
+    const items = await Item.find({ title: query }).sort({
+      title: "asc",
+    });
+    if (items.length < 1) return res.status(401).json({ Message: "Item not found" });
+
+    res.json({ items });
+    console.log(items);
+    next();
+  } catch (error) {
+    return next(error);
+  }
+});
+
 router.get("/", async (req, res, next) => {
   try {
-    const items = await Item.find({}).sort({ dateCreated: "asc" });
+    const items = await Item.find({}).sort({ title: "asc" });
     res.json(items);
     console.log("GET/all items");
     next();
@@ -71,9 +87,9 @@ router.post("/new", express.json(), async (req, res, next) => {
       dateCreated: now,
     });
 
-    const items = await Item.find({});
-    //const item = await Item.findOne({ title: title });
-    res.json(items);
+    // const items = await Item.find({});
+    const item = await Item.findOne({ title: title });
+    res.json(item);
 
     console.log("POST/new item");
     next();
@@ -114,8 +130,8 @@ router.put("/:id", express.json(), async (req, res, next) => {
       dateCreated: now,
     });
 
-    const item = await Item.findById(id);
-    res.json(item);
+    const items = await Item.find({});
+    res.json(items);
 
     console.log("PUT/update item");
     next();

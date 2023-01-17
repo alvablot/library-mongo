@@ -69,14 +69,14 @@ content-type: application/json
 }
 
 ###
-PUT http://localhost:3000/users/63b5c608a6c710a39767985b
+PUT http://localhost:3000/users/63c54c8b03ba9b32e3ea486c
 content-type: application/json
 
 {
     "firstName": "Petter",
     "lastName": "Callesson",
     "password": "666",
-    "email": "mail@mail.com"
+    "email": "petter"
 }
 
 ###
@@ -102,6 +102,10 @@ GET http://localhost:3000/items
 ###
 
 GET http://localhost:3000/items/Book
+
+###
+
+GET http://localhost:3000/items/search/
 
 ###
 DELETE http://localhost:3000/items/63be864fc439f4cdfa240137
