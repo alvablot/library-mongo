@@ -28,9 +28,10 @@ router.get("/", async (req, res, next) => {
 
 router.post("/new", express.json(), async (req, res, next) => {
   try {
-    const { name, subs } = req.body;
+    const { name, subs, index } = req.body;
     const newCategory = await Category.create({
       name: name,
+      index: index,
       subs: subs,
     });
 
@@ -47,9 +48,10 @@ router.post("/new", express.json(), async (req, res, next) => {
 router.put("/:id", express.json(), async (req, res, next) => {
   try {
     const id = req.params.id;
-    const { name, subs } = req.body;
+    const { name, subs, index } = req.body;
     const freshCategory = await Category.findByIdAndUpdate(id, {
       name: name,
+      index: index,
       subs: subs,
     });
     const categories = await Category.find({});

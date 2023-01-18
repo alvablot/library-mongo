@@ -12,12 +12,13 @@ router.get("/:id", async (req, res, next) => {
       res.json(item);
     } else {
       if (id === "All") {
-        const item = await Item.find({}).sort({ dateCreated: -1 });
+        const item = await Item.find({}).sort({ title: "asc" });
         res.json(item);
+        console.log("Get all");
       } else {
         const item = await Item.find({ category: id })
-          .sort({ dateCreated: "asc" })
-          .exec();
+        .sort({ title: "asc" })
+        .exec();
         console.log(id);
         res.json(item);
       }

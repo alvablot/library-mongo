@@ -5,6 +5,10 @@ const categoriesSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  index: {
+    type: Number,
+    required: true,
+  },
   subs: [
     {
       type: String,
