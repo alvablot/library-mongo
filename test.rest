@@ -76,7 +76,16 @@ content-type: application/json
     "firstName": "Petter",
     "lastName": "Callesson",
     "password": "666",
-    "email": "petter"
+    "email": "petter",
+    "likes": ["6464"]
+}
+
+###
+PATCH http://localhost:3000/users/63c54c8b03ba9b32e3ea486c
+content-type: application/json
+
+{
+    "likes": "777"
 }
 
 ###
@@ -105,7 +114,7 @@ GET http://localhost:3000/items/Book
 
 ###
 
-GET http://localhost:3000/items/search/
+GET http://localhost:3000/items/search/as
 
 ###
 DELETE http://localhost:3000/items/63be864fc439f4cdfa240137
@@ -204,23 +213,24 @@ content-type: application/json
 }
 
 ###
-PUT http://localhost:3000/categories/63bd54b79a14f18eebba7ea1
+PUT http://localhost:3000/categories/63bd9f9afc7d2a57cd3a5e73
 content-type: application/json
 
 {
-    "name": "Book",
+    "name": "Magazine",
+    "index": 0,
         "subs": [      
-        "Horror",
-        "Contemperary",
-        "Thriller",
-        "Fantasy",
-        "Mystery",
-        "War",
-        "Drama",
-        "Sience Fiction",
-        "Ducumentary",
-        "Music",
-        "Biography"
+      "Horror",
+      "Contemperary",
+      "Thriller",
+      "Fantasy",
+      "Mystery",
+      "War",
+      "Drama",
+      "Sience Fiction",
+      "Documentary",
+      "Music",
+      "Biography"
     ]
 }
 

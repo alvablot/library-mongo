@@ -72,7 +72,8 @@ router.post("/new", express.json(), async (req, res, next) => {
 router.post("/login", express.json(), async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    if (!email || !password) return res.status(400).json({ Message: "Password or email missing" });
+    if (!email || !password)
+      return res.status(400).json({ Message: "Password or email missing" });
 
     const existingUser = await User.findOne({ email: email });
     if (existingUser === null) return res.status(401).json({ Message: "User not found" });
@@ -105,19 +106,44 @@ router.post("/login", express.json(), async (req, res, next) => {
 router.put("/:id", express.json(), async (req, res, next) => {
   try {
     const id = req.params.id;
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, password, likes } = req.body;
 
     const freshUser = await User.findByIdAndUpdate(id, {
       firstName: firstName,
       lastName: lastName,
       password: md5(password),
       email: email,
+      likes: likes,
     });
 
     const user = await User.find({});
     res.json(user);
 
     console.log("PUT/update User");
+    next();
+  } catch (error) {
+    return next(error);
+  }
+});
+
+router.patch("/:id", express.json(), async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const { likes } = req.body;
+
+    const user = await User.findById(id);
+    const likesArray = user.likes;
+    const likeExist = likesArray.indexOf(likes);
+    if (likeExist > -1) {
+      likesArray.splice(likeExist);
+    } else {
+      likesArray.push(likes);
+    }
+    const freshUser = await User.findByIdAndUpdate(id, {
+      likes: likesArray,
+    });
+    res.json(user);
+    console.log("PATCH/update LIKES");
     next();
   } catch (error) {
     return next(error);
