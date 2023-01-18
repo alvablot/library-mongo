@@ -77,7 +77,6 @@ content-type: application/json
     "lastName": "Callesson",
     "password": "666",
     "email": "petter",
-    "likes": ["6464"]
 }
 
 ###
@@ -85,7 +84,7 @@ PATCH http://localhost:3000/users/63c54c8b03ba9b32e3ea486c
 content-type: application/json
 
 {
-    "likes": "777"
+    "likes": "666"
 }
 
 ###
