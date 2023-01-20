@@ -17,6 +17,22 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  notes: {
+    type: String,
+    required: false,
+  },
+  dateCreated: {
+    type: Date,
+    required: true,
+  },
+  lastModified: {
+    type: Date,
+    required: true,
+  },
+  lastLogIn: {
+    type: Date,
+    required: true,
+  },
   likes: [
     {
       type: String,

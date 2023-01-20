@@ -73,10 +73,18 @@ PUT http://localhost:3000/users/63c54c8b03ba9b32e3ea486c
 content-type: application/json
 
 {
+    "_id": "63c54c8b03ba9b32e3ea486c",
     "firstName": "Petter",
-    "lastName": "Callesson",
+    "lastName": "Karlsson",
     "password": "666",
     "email": "petter",
+    "notes": "Den här skiten är helt värdelös",
+    "lastLogIn": "2023-01-19T08:39:03.176Z",
+    "likes": [
+        "63b7364ec9bafaba829dda82",
+        "63b5de4b91fa8908df0f75c7",
+        "63c011ab9dc2bae90c4f8fe1"
+    ]
 }
 
 ###
@@ -93,13 +101,13 @@ content-type: application/json
 
 {
     "password": "666",
-    "email": "lena@sf.com"
+    "email": "petter"
 }
 
 ### Auth ########################################################
 GET http://localhost:3000/users/63c54c8b03ba9b32e3ea486c
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzU0YzhiMDNiYTliMzJlM2VhNDg2YyIsImVtYWlsIjoicGV0dGVyIiwiaWF0IjoxNjczODg5NzUwfQ.ytQhwv--wqyiRFLyIgCcQ3O53dtFQijP9Ywvb0TJUBQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzU0YzhiMDNiYTliMzJlM2VhNDg2YyIsImVtYWlsIjoicGV0dGVyIiwiaWF0IjoxNjc0MjM1MDE4fQ._PnR_31xfvt9ChgSh4_IfWBcOrWhl-3hzVo39OzjrnA
 
 ### ITEMS ########################################################
 GET http://localhost:3000/items/63b5de4b91fa8908df0f75c7
@@ -140,13 +148,15 @@ content-type: application/json
 
 {
     "title": "Minuscule vol. 1",
-    "author": "?",
+    "author": "Olla Carlsson",
+    "publisher": "Egmont",
+    "notes": "Jättebra",
     "number": "666",
     "image": "https://res.cloudinary.com/dajj8zghh/image/upload/v1673362635/img/rtjxqmxavlkyczvbdlfa.jpg",
     "description": "About a Bug in France",
     "category": "DVD",
     "sub": "Animated",
-    "rating": 4,
+    "likes": 4,
     "home": true,
     "lender": "none"
 }
@@ -219,17 +229,17 @@ content-type: application/json
     "name": "Magazine",
     "index": 0,
         "subs": [      
-      "Horror",
-      "Contemperary",
-      "Thriller",
-      "Fantasy",
-      "Mystery",
-      "War",
-      "Drama",
-      "Sience Fiction",
-      "Documentary",
-      "Music",
-      "Biography"
+        "Horror",
+        "Contemperary",
+        "Thriller",
+        "Fantasy",
+        "Mystery",
+        "War",
+        "Drama",
+        "Sience Fiction",
+        "Documentary",
+        "Music",
+        "Biography"
     ]
 }
 

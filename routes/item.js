@@ -16,9 +16,7 @@ router.get("/:id", async (req, res, next) => {
         res.json(item);
         console.log("Get all");
       } else {
-        const item = await Item.find({ category: id })
-        .sort({ title: "asc" })
-        .exec();
+        const item = await Item.find({ category: id }).sort({ title: "asc" }).exec();
         console.log(id);
         res.json(item);
       }
@@ -115,7 +113,8 @@ router.put("/:id", express.json(), async (req, res, next) => {
       rating,
       home,
       lender,
-      dateCreated,
+      notes,
+      publisher,
     } = req.body;
     const freshItem = await Item.findByIdAndUpdate(id, {
       title: title,
@@ -128,7 +127,9 @@ router.put("/:id", express.json(), async (req, res, next) => {
       rating: rating,
       home: home,
       lender: lender,
-      dateCreated: now,
+      lastModified: now,
+      notes: notes,
+      publisher: publisher,
     });
 
     const items = await Item.find({});

@@ -21,6 +21,10 @@ const itemSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  notes: {
+    type: String,
+    required: false,
+  },
   category: {
     type: String,
     required: true,
@@ -29,8 +33,16 @@ const itemSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  rating: {
+  likes: {
     type: Number,
+    required: false,
+  },
+  publisher: {
+    type: String,
+    required: false,
+  },
+  notes: {
+    type: String,
     required: false,
   },
   home: {
@@ -44,17 +56,19 @@ const itemSchema = new mongoose.Schema({
   dateCreated: {
     type: Date,
     required: true,
-  }
-  ,
+  },
+  lastModified: {
+    type: Date,
+    required: true,
+  },
   dateLoan: {
     type: Date,
     required: false,
-  }
-  ,
+  },
   dateReturn: {
     type: Date,
     required: false,
-  }
+  },
 });
 
 module.exports = mongoose.model("Item", itemSchema);
