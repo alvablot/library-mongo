@@ -76,7 +76,6 @@ content-type: application/json
     "_id": "63c54c8b03ba9b32e3ea486c",
     "firstName": "Petter",
     "lastName": "Karlsson",
-    "password": "666",
     "email": "petter",
     "notes": "Den här skiten är helt värdelös",
     "likes": [

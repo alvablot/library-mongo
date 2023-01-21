@@ -108,18 +108,13 @@ router.post("/login", express.json(), async (req, res, next) => {
 router.put("/:id", express.json(), async (req, res, next) => {
   try {
     const id = req.params.id;
-    const { firstName, lastName, password, email, notes } = req.body;
-    let newPassword;
-    if (password === undefined) {
-      newPassword = await User.findById(id).password;
-    } else newPassword = password;
+    const { firstName, lastName, email, notes } = req.body;
 
     const freshUser = await User.findByIdAndUpdate(id, {
       firstName: firstName,
       lastName: lastName,
-      password: md5(newPassword),
       email: email,
-      notes,
+      notes: notes,
       lastModified: new Date(),
     });
 
