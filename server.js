@@ -38,6 +38,7 @@ app.use("/", indexRouter);
 app.use("/authors", authorRouter);
 app.use("/items", itemRouter);
 app.use("/users", userRouter);
+app.use("/users/password", userRouter);
 app.use("/images", imageRouter);
 app.use("/categories", categoryRouter);
 

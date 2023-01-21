@@ -131,22 +131,38 @@ router.put("/:id", express.json(), async (req, res, next) => {
 router.patch("/:id", express.json(), async (req, res, next) => {
   try {
     const id = req.params.id;
-    const { likes } = req.body;
-
+    const { likes, newPassword, oldPassword } = req.body;
     const user = await User.findById(id);
-    const likesArray = user.likes;
-    const likeExist = likesArray.indexOf(likes);
-    if (likeExist > -1) {
-      likesArray.splice(likeExist);
+    if (newPassword && oldPassword) {
+      const harshedOldPassword = md5(oldPassword);
+
+      const existingPassword = user.password;
+
+      const rightPassword = harshedOldPassword === existingPassword;
+      if (!rightPassword) return res.json({ Message: "Wrong old password" });
+      if (newPassword) {
+        const freshUser = await User.findByIdAndUpdate(id, {
+          password: md5(newPassword),
+        });
+        res.json(freshUser);
+        console.log("PATCH/update password");
+        next();
+      }
     } else {
-      likesArray.push(likes);
+      const likesArray = user.likes;
+      const likeExist = likesArray.indexOf(likes);
+      if (likeExist > -1) {
+        likesArray.splice(likeExist);
+      } else {
+        likesArray.push(likes);
+      }
+      const freshUser = await User.findByIdAndUpdate(id, {
+        likes: likesArray,
+      });
+      res.json(user);
+      console.log("PATCH/update LIKES");
+      next();
     }
-    const freshUser = await User.findByIdAndUpdate(id, {
-      likes: likesArray,
-    });
-    res.json(user);
-    console.log("PATCH/update LIKES");
-    next();
   } catch (error) {
     return next(error);
   }
