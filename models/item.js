@@ -59,7 +59,7 @@ const itemSchema = new mongoose.Schema({
   },
   lastModified: {
     type: Date,
-    required: true,
+    required: false,
   },
   dateLoan: {
     type: Date,

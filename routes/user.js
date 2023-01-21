@@ -139,16 +139,16 @@ router.patch("/:id", express.json(), async (req, res, next) => {
       const existingPassword = user.password;
 
       const rightPassword = harshedOldPassword === existingPassword;
-      if (!rightPassword) return res.json({ Message: "Wrong old password" });
+      if (!rightPassword) return res.status(403).json({ Message: "Wrong old password" });
       if (newPassword) {
         const freshUser = await User.findByIdAndUpdate(id, {
           password: md5(newPassword),
         });
-        res.json(freshUser);
+        res.json({ Message: "Password updated" });
         console.log("PATCH/update password");
         next();
       }
-    } else {
+    } else if (likes) {
       const likesArray = user.likes;
       const likeExist = likesArray.indexOf(likes);
       if (likeExist > -1) {
@@ -162,6 +162,8 @@ router.patch("/:id", express.json(), async (req, res, next) => {
       res.json(user);
       console.log("PATCH/update LIKES");
       next();
+    } else {
+      res.status(500).json({ Mesage: "Sorry, something went wrong" });
     }
   } catch (error) {
     return next(error);

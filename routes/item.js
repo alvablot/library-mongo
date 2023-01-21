@@ -57,7 +57,6 @@ router.get("/", async (req, res, next) => {
 });
 
 router.post("/new", express.json(), async (req, res, next) => {
-  const now = new Date();
   try {
     const {
       title,
@@ -83,7 +82,7 @@ router.post("/new", express.json(), async (req, res, next) => {
       sub: sub,
       rating: rating,
       home: home,
-      dateCreated: now,
+      dateCreated: new Date(),
     });
 
     // const items = await Item.find({});
@@ -98,7 +97,6 @@ router.post("/new", express.json(), async (req, res, next) => {
 });
 
 router.put("/:id", express.json(), async (req, res, next) => {
-  const now = new Date();
   try {
     const id = req.params.id;
     const {
@@ -127,7 +125,7 @@ router.put("/:id", express.json(), async (req, res, next) => {
       rating: rating,
       home: home,
       lender: lender,
-      lastModified: now,
+      lastModified: new Date(),
       notes: notes,
       publisher: publisher,
     });
