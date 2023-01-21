@@ -79,7 +79,6 @@ content-type: application/json
     "password": "666",
     "email": "petter",
     "notes": "Den här skiten är helt värdelös",
-    "lastLogIn": "2023-01-19T08:39:03.176Z",
     "likes": [
         "63b7364ec9bafaba829dda82",
         "63b5de4b91fa8908df0f75c7",

@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 const auth = require("../middlewares/auth");
 let token = false;
 let activeUser = {};
-const now = new Date();
 
 const router = express.Router();
 const User = require("../models/user");
@@ -57,7 +56,7 @@ router.post("/new", express.json(), async (req, res, next) => {
       password: md5(password),
       email: email,
       notes: notes,
-      dateCreated: now,
+      dateCreated: new Date(),
     });
 
     const users = await User.find({});
@@ -96,7 +95,7 @@ router.post("/login", express.json(), async (req, res, next) => {
       password: hashedPassword,
     };
     const updateUser = await User.findByIdAndUpdate(existingUser._id, {
-      lastLogIn: now,
+      lastLogIn: new Date(),
     });
     console.log(updateUser);
     res.json({ token: token });
@@ -109,18 +108,22 @@ router.post("/login", express.json(), async (req, res, next) => {
 router.put("/:id", express.json(), async (req, res, next) => {
   try {
     const id = req.params.id;
-    const { firstName, lastName, email, password, notes } = req.body;
+    const { firstName, lastName, password, email, notes } = req.body;
+    let newPassword;
+    if (password === undefined) {
+      newPassword = await User.findById(id).password;
+    } else newPassword = password;
 
     const freshUser = await User.findByIdAndUpdate(id, {
       firstName: firstName,
       lastName: lastName,
-      password: md5(password),
+      password: md5(newPassword),
       email: email,
-      notes, notes,
+      notes,
       lastModified: new Date(),
     });
 
-    const user = await User.find({});
+    const user = await User.findById(id);
     res.json(user);
 
     console.log("PUT/update User");
