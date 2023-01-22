@@ -152,7 +152,7 @@ router.patch("/:id", express.json(), async (req, res, next) => {
       const likesArray = user.likes;
       const likeExist = likesArray.indexOf(likes);
       if (likeExist > -1) {
-        likesArray.splice(likeExist);
+        likesArray.splice(likeExist, 1);
       } else {
         likesArray.push(likes);
       }
