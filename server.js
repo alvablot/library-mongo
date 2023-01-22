@@ -21,6 +21,7 @@ const itemRouter = require("./routes/item");
 const userRouter = require("./routes/user");
 const imageRouter = require("./routes/image");
 const categoryRouter = require("./routes/category");
+const subRouter = require("./routes/subs");
 
 app.use(cors());
 
@@ -41,6 +42,7 @@ app.use("/users", userRouter);
 app.use("/users/password", userRouter);
 app.use("/images", imageRouter);
 app.use("/categories", categoryRouter);
+app.use("/subs", subRouter);
 
 app.use((err, req, res, next) => {
   console.log("Bad request");

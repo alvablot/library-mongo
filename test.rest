@@ -73,7 +73,6 @@ PUT http://localhost:3000/users/63c54c8b03ba9b32e3ea486c
 content-type: application/json
 
 {
-    "_id": "63c54c8b03ba9b32e3ea486c",
     "firstName": "Petter",
     "lastName": "Karlsson",
     "email": "petter",
@@ -91,6 +90,15 @@ content-type: application/json
 
 {
     "likes": "666"
+}
+
+###
+PATCH http://localhost:3000/users/63c54c8b03ba9b32e3ea486c
+content-type: application/json
+
+{
+    "oldPassword": "666",
+    "newPassword": "666"
 }
 
 ###
@@ -129,7 +137,7 @@ POST http://localhost:3000/items/new
 content-type: application/json
 
 {
-    "title": "Test",
+    "title": "Testasda",
     "author": "Test",
     "number": "666",
     "image": "https://res.cloudinary.com/dajj8zghh/image/upload/v1673460759/img/mxhj4akj3bq00nxcvrsq.png",
@@ -199,12 +207,37 @@ content-type: application/json
 
 ### CATEGORIES #####################################################################
 GET http://localhost:3000/categories/
+
 ###
 POST http://localhost:3000/categories/new
 content-type: application/json
 
-{
-    "name": "Magazine",
+{   
+    "category": "All",
+    "name": "All",
+    "index": 9
+}
+###
+GET http://localhost:3000/subs/
+###
+POST http://localhost:3000/subs/new
+content-type: application/json
+
+{   "category" : "Storage",
+    "index": 4,
+    "subs": [      
+        "Boxes",
+        "Storage Room",
+        "Wherehouse"
+    ]
+}
+
+###
+PUT http://localhost:3000/subs/63ccd486e315321b19bf1b4a
+content-type: application/json
+
+{   "category" : "Paper",
+    "index": 0,
     "subs": [      
         "Horror",
         "Contemperary",
@@ -215,7 +248,11 @@ content-type: application/json
         "Drama",
         "Sience Fiction",
         "Ducumentary",
-        "Music"
+        "Music",
+        "Romance",
+        "Biagrophy",
+        "Comedy",
+        "Action"
     ]
 }
 

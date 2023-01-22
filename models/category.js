@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const categoriesSchema = new mongoose.Schema({
+  category: {
+    type: String,
+    required: true,
+  },
   name: {
     type: String,
     required: true,
@@ -9,11 +13,7 @@ const categoriesSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  subs: [
-    {
-      type: String,
-    },
-  ],
+
 });
 
 module.exports = mongoose.model("Category", categoriesSchema);

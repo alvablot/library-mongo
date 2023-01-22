@@ -28,11 +28,11 @@ router.get("/", async (req, res, next) => {
 
 router.post("/new", express.json(), async (req, res, next) => {
   try {
-    const { name, subs, index } = req.body;
+    const { category, name,  index } = req.body;
     const newCategory = await Category.create({
+      category: category,
       name: name,
       index: index,
-      subs: subs,
     });
 
     const categories = await Category.find({});
@@ -48,11 +48,11 @@ router.post("/new", express.json(), async (req, res, next) => {
 router.put("/:id", express.json(), async (req, res, next) => {
   try {
     const id = req.params.id;
-    const { name, subs, index } = req.body;
+    const { category, name,  index  } = req.body;
     const freshCategory = await Category.findByIdAndUpdate(id, {
+      category: category,
       name: name,
       index: index,
-      subs: subs,
     });
     const categories = await Category.find({});
     res.json(categories);
