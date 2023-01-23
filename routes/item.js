@@ -60,6 +60,7 @@ router.post("/new", express.json(), async (req, res, next) => {
   try {
     const {
       title,
+      subtitle,
       author,
       number,
       image,
@@ -70,10 +71,12 @@ router.post("/new", express.json(), async (req, res, next) => {
       home,
       lender,
       dateCreated,
+      website,
     } = req.body;
 
     const newItem = await Item.create({
       title: title,
+      subtitle: subtitle,
       author: author,
       number: number,
       image: image,
@@ -82,6 +85,8 @@ router.post("/new", express.json(), async (req, res, next) => {
       sub: sub,
       rating: rating,
       home: home,
+      lender: lender,
+      website: website,
       dateCreated: new Date(),
     });
 
@@ -101,6 +106,7 @@ router.put("/:id", express.json(), async (req, res, next) => {
     const id = req.params.id;
     const {
       title,
+      subtitle,
       author,
       number,
       image,
@@ -113,9 +119,11 @@ router.put("/:id", express.json(), async (req, res, next) => {
       lender,
       notes,
       publisher,
+      website,
     } = req.body;
     const freshItem = await Item.findByIdAndUpdate(id, {
       title: title,
+      subtitle: subtitle,
       author: author,
       number: number,
       image: image,
@@ -128,6 +136,7 @@ router.put("/:id", express.json(), async (req, res, next) => {
       lastModified: new Date(),
       notes: notes,
       publisher: publisher,
+      website: website,
     });
 
     const items = await Item.find({});

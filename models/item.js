@@ -5,6 +5,10 @@ const itemSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  subtitle: {
+    type: String,
+    required: false,
+  },
   author: {
     type: String,
     id: String,
@@ -19,7 +23,7 @@ const itemSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true,
+    required: false,
   },
   notes: {
     type: String,
@@ -42,6 +46,10 @@ const itemSchema = new mongoose.Schema({
     required: false,
   },
   notes: {
+    type: String,
+    required: false,
+  },
+  website: {
     type: String,
     required: false,
   },
