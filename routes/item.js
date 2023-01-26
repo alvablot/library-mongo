@@ -4,16 +4,17 @@ const router = express.Router();
 const Item = require("../models/item");
 
 router.post("/:id", express.json(), async (req, res, next) => {
+  let item;
   try {
     const sort = req.body;
 
     const id = req.params.id;
     if (id.length > 23) {
-      const item = await Item.findById(id).sort(sort);
+      item = await Item.findById(id).sort(sort);
       res.json(item);
     } else {
       if (id === "All" || !id) {
-        const item = await Item.find({}).sort(sort);
+        item = await Item.find({}).sort(sort);
         res.json(item);
         console.log("Get all");
       } else if (id === "new") {
@@ -50,16 +51,19 @@ router.post("/:id", express.json(), async (req, res, next) => {
         });
 
         // const items = await Item.find({});
-        const item = await Item.findOne({ title: title });
+        item = await Item.findOne({ title: title });
         res.json(item);
       } else {
-        const item = await Item.find({ category: id }).sort(sort).exec();
+        if (item.length < 1) {
+          console.log(404);
+          return res.status(404).json({ Message: "Not found" });
+        }
+        item = await Item.find({ category: id }).sort(sort).exec();
         console.log(id);
         res.json(item);
       }
     }
 
-    console.log(`post/item ${id}`);
     next();
   } catch (error) {
     return next(error);
