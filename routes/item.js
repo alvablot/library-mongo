@@ -54,13 +54,15 @@ router.post("/:id", express.json(), async (req, res, next) => {
         item = await Item.findOne({ title: title });
         res.json(item);
       } else {
-        if (item.length < 1) {
+        item = await Item.find({ category: id }).sort(sort).exec();
+
+        if (item.length > 1) {
+          console.log(id);
+          return res.json(item);
+        } else {
           console.log(404);
           return res.status(404).json({ Message: "Not found" });
         }
-        item = await Item.find({ category: id }).sort(sort).exec();
-        console.log(id);
-        res.json(item);
       }
     }
 
