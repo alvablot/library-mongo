@@ -3,20 +3,22 @@ const router = express.Router();
 
 const Item = require("../models/item");
 
-router.get("/:id", async (req, res, next) => {
+router.post("/:id", express.json(), async (req, res, next) => {
   try {
+    const sort = req.body;
+    console.log(sort);
     const id = req.params.id;
     if (id.length > 23) {
-      const item = await Item.findById(id);
+      const item = await Item.findById(id).sort(sort);
       console.log(id);
       res.json(item);
     } else {
       if (id === "All") {
-        const item = await Item.find({}).sort({ title: "asc" });
+        const item = await Item.find({}).sort(sort);
         res.json(item);
         console.log("Get all");
       } else {
-        const item = await Item.find({ category: id }).sort({ title: "asc" }).exec();
+        const item = await Item.find({ category: id }).sort(sort).exec();
         console.log(id);
         res.json(item);
       }
@@ -48,10 +50,10 @@ router.get("/search/:query", async (req, res, next) => {
 router.get("/", async (req, res, next) => {
   try {
     const sort = req.body;
-    console.log(sort)
+    console.log(sort);
     const items = await Item.find({}).sort(sort);
     res.json(items);
-    console.log("GET/all items");
+    //console.log("GET/all items");
     next();
   } catch (error) {
     return next(error);
