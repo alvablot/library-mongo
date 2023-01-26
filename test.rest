@@ -120,7 +120,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzU0YzhiM
 GET http://localhost:3000/items/63b5de4b91fa8908df0f75c7
 
 ### 
-GET http://localhost:3000/items
+POST http://localhost:3000/items/All
 content-type: application/json
 
 {

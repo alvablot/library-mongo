@@ -13,7 +13,7 @@ router.post("/:id", express.json(), async (req, res, next) => {
       console.log(id);
       res.json(item);
     } else {
-      if (id === "All") {
+      if (id === "All" || !id) {
         const item = await Item.find({}).sort(sort);
         res.json(item);
         console.log("Get all");
