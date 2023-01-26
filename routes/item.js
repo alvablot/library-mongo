@@ -6,17 +6,52 @@ const Item = require("../models/item");
 router.post("/:id", express.json(), async (req, res, next) => {
   try {
     const sort = req.body;
-    console.log(sort);
+
     const id = req.params.id;
     if (id.length > 23) {
       const item = await Item.findById(id).sort(sort);
-      console.log(id);
       res.json(item);
     } else {
       if (id === "All" || !id) {
         const item = await Item.find({}).sort(sort);
         res.json(item);
         console.log("Get all");
+      } else if (id === "new") {
+        const {
+          title,
+          subtitle,
+          author,
+          number,
+          image,
+          description,
+          category,
+          sub,
+          rating,
+          home,
+          lender,
+          dateCreated,
+          website,
+        } = req.body;
+
+        const newItem = await Item.create({
+          title: title,
+          subtitle: subtitle,
+          author: author,
+          number: number,
+          image: image,
+          description: description,
+          category: category,
+          sub: sub,
+          rating: rating,
+          home: home,
+          lender: lender,
+          website: website,
+          dateCreated: new Date(),
+        });
+
+        // const items = await Item.find({});
+        const item = await Item.findOne({ title: title });
+        res.json(item);
       } else {
         const item = await Item.find({ category: id }).sort(sort).exec();
         console.log(id);
@@ -24,7 +59,7 @@ router.post("/:id", express.json(), async (req, res, next) => {
       }
     }
 
-    console.log(`GET/item ${id}`);
+    console.log(`post/item ${id}`);
     next();
   } catch (error) {
     return next(error);
@@ -54,51 +89,6 @@ router.get("/", async (req, res, next) => {
     const items = await Item.find({}).sort(sort);
     res.json(items);
     //console.log("GET/all items");
-    next();
-  } catch (error) {
-    return next(error);
-  }
-});
-
-router.post("/new", express.json(), async (req, res, next) => {
-  try {
-    const {
-      title,
-      subtitle,
-      author,
-      number,
-      image,
-      description,
-      category,
-      sub,
-      rating,
-      home,
-      lender,
-      dateCreated,
-      website,
-    } = req.body;
-
-    const newItem = await Item.create({
-      title: title,
-      subtitle: subtitle,
-      author: author,
-      number: number,
-      image: image,
-      description: description,
-      category: category,
-      sub: sub,
-      rating: rating,
-      home: home,
-      lender: lender,
-      website: website,
-      dateCreated: new Date(),
-    });
-
-    // const items = await Item.find({});
-    const item = await Item.findOne({ title: title });
-    res.json(item);
-
-    console.log("POST/new item");
     next();
   } catch (error) {
     return next(error);
