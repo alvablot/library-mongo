@@ -27,11 +27,11 @@ const userSchema = new mongoose.Schema({
   },
   lastModified: {
     type: Date,
-    required: true,
+    required: false,
   },
   lastLogIn: {
     type: Date,
-    required: true,
+    required: false,
   },
   likes: [
     {

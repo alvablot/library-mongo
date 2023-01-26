@@ -28,7 +28,8 @@ content-type: application/json
     "categories": ["Horror", "Contemperary"],
     "rating": 4,
     "home": true,
-    "lender": "none"
+    "lender": "none",
+    "website": "none"
 }
 
 ###
@@ -62,10 +63,10 @@ POST http://localhost:3000/users/new
 content-type: application/json
 
 {
-    "firstName": "Lena",
-    "lastName": "Nilsson",
-    "password": "666",
-    "email": "lena@sf.com"
+    "firstName": "Oscar",
+    "lastName": "Lindqvist",
+    "password": "Examen_jan2023",
+    "email": "oscar.lindqvist@cmeducations.se"
 }
 
 ###
@@ -120,7 +121,11 @@ GET http://localhost:3000/items/63b5de4b91fa8908df0f75c7
 
 ### 
 GET http://localhost:3000/items
+content-type: application/json
 
+{
+    "title": "asc"
+}
 ###
 
 GET http://localhost:3000/items/Book
@@ -161,6 +166,7 @@ content-type: application/json
     "image": "https://res.cloudinary.com/dajj8zghh/image/upload/v1673362635/img/rtjxqmxavlkyczvbdlfa.jpg",
     "description": "About a Bug in France",
     "category": "DVD",
+    "website": "hej",
     "sub": "Animated",
     "likes": 4,
     "home": true,
@@ -168,12 +174,12 @@ content-type: application/json
 }
 
 ###
-PATCH http://localhost:3000/items/63b6c4771d945f0c4527dceb
+PATCH http://localhost:3000/items/63b7364ec9bafaba829dda82
 content-type: application/json
 
 {
     "home": false,
-    "lender": "Rustan Jävel"
+    "lender": "Rustan"
 }
 ### Authors ########################################################
 GET http://localhost:3000/authors/63b46af43c3423f139107d4f
@@ -213,9 +219,9 @@ POST http://localhost:3000/categories/new
 content-type: application/json
 
 {   
-    "category": "All",
-    "name": "All",
-    "index": 9
+    "category": "Paper",
+    "name": "Comic Book",
+    "index": 0
 }
 ###
 GET http://localhost:3000/subs/
@@ -223,36 +229,52 @@ GET http://localhost:3000/subs/
 POST http://localhost:3000/subs/new
 content-type: application/json
 
-{   "category" : "Storage",
-    "index": 4,
+{   "category" : "Paper",
+    "index": 0,
     "subs": [      
-        "Boxes",
-        "Storage Room",
-        "Wherehouse"
+      "Horror",
+      "Contemperary",
+      "Thriller",
+      "Fantasy",
+      "Mystery",
+      "War",
+      "Drama",
+      "Sience Fiction",
+      "Documentary",
+      "Music",
+      "Romance",
+      "Biagrophy",
+      "Comedy",
+      "Action",
+      "Fact"
     ]
 }
 
 ###
-PUT http://localhost:3000/subs/63ccd486e315321b19bf1b4a
+PUT http://localhost:3000/subs/63ce6c7d875f217fd2aefbec
 content-type: application/json
 
 {   "category" : "Paper",
     "index": 0,
     "subs": [      
-        "Horror",
-        "Contemperary",
-        "Thriller",
-        "Fantasy",
-        "Mystery",
-        "War",
-        "Drama",
-        "Sience Fiction",
-        "Ducumentary",
-        "Music",
-        "Romance",
-        "Biagrophy",
-        "Comedy",
-        "Action"
+      "Horror",
+      "Contemperary",
+      "Thriller",
+      "Fantasy",
+      "Mystery",
+      "War",
+      "Drama",
+      "Sience Fiction",
+      "Documentary",
+      "Music",
+      "Romance",
+      "Biagrophy",
+      "Comedy",
+      "Action",
+      "Fact",
+      "Adventure",
+      "History"
+      
     ]
 }
 

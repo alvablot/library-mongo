@@ -47,7 +47,9 @@ router.get("/search/:query", async (req, res, next) => {
 
 router.get("/", async (req, res, next) => {
   try {
-    const items = await Item.find({}).sort({ title: "asc" });
+    const sort = req.body;
+    console.log(sort)
+    const items = await Item.find({}).sort(sort);
     res.json(items);
     console.log("GET/all items");
     next();
